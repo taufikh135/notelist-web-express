@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MyNotes | <%= title %></title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            canvas: "#f3f4f6",
+                        },
+                        boxShadow: {
+                            soft: "0 10px 30px rgba(15, 23, 42, 0.08)",
+                        },
+                    },
+                },
+            };
+        </script>
+        <script>
+            (function () {
+                const savedTheme = localStorage.getItem("theme");
+                const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+                if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+                    document.documentElement.classList.add("dark");
+                }
+            })();
+        </script>
+    </head>
+    <body class="min-h-screen bg-canvas text-gray-900 transition-colors dark:bg-gray-950 dark:text-gray-100">
+        <div class="min-h-screen"><%- include("../partials/navbar") %> <%- body %></div>
+
+        <script>
+            (function () {
+                const root = document.documentElement;
+                const themeToggle = document.getElementById("themeToggle");
+                const themeLabel = document.getElementById("themeLabel");
+
+                function syncThemeLabel() {
+                    if (!themeLabel) {
+                        return;
+                    }
+
+                    themeLabel.textContent = root.classList.contains("dark") ? "Light" : "Dark";
+                }
+
+                if (themeToggle) {
+                    themeToggle.addEventListener("click", function () {
+                        root.classList.toggle("dark");
+                        localStorage.setItem("theme", root.classList.contains("dark") ? "dark" : "light");
+                        syncThemeLabel();
+                    });
+                }
+
+                syncThemeLabel();
+            })();
+        </script>
+    </body>
+</html>

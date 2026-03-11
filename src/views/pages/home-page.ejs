@@ -1,0 +1,27 @@
+<%- include("../partials/alert") %>
+
+<main class="container mx-auto max-w-4xl p-4 py-8">
+    <section class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h1 class="text-2xl font-semibold">Your Notes</h1>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Keep your thoughts organized in one place.</p>
+        </div>
+
+        <a href="/notes/create" class="inline-flex items-center justify-center rounded bg-black px-4 py-2 text-white transition hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"> New Note </a>
+    </section>
+
+    <section class="grid gap-4">
+        <% if (notes.length === 0) { %>
+        <p class="text-center text-gray-500 dark:text-gray-400">You have no notes yet. Click "New Note" to create your first note!</p>
+        <% } else {%>
+        <% notes.forEach(note => { %>
+        <a href="/notes/<%= note.id %>" class="block cursor-pointer rounded-lg bg-white p-4 shadow transition hover:shadow-md dark:bg-gray-900 dark:ring-1 dark:ring-gray-800">
+            <article>
+                <h2 class="text-lg font-semibold"><%= note.title %></h2>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Last edited: <%= note.updatedAt.toLocaleString() %></p>
+            </article>
+        </a>
+        <% }) %>
+        <% } %>
+    </section>
+</main>
