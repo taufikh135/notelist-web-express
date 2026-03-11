@@ -1,0 +1,24 @@
+@startuml erd 
+
+entity User {
+    * id : int
+    * name : string
+    * email : string
+    * password : string
+    * last_login : datetime
+    * created_at : datetime
+    * updated_at : datetime
+}
+
+entity Note {
+    * id : int
+    * user_id : int
+    * title : string
+    * content : text
+    * created_at : datetime
+    * updated_at : datetime
+}
+
+User ||--o{ Note : has
+
+@enduml

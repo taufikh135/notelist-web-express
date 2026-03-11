@@ -1,0 +1,48 @@
+<%- include("../partials/alert") %>
+<main class="container mx-auto max-w-4xl p-4 py-8">
+    <section class="rounded-lg bg-white p-6 shadow-soft dark:bg-gray-900 dark:ring-1 dark:ring-gray-800">
+        <div class="mb-6 flex flex-col gap-4 border-b border-gray-200 pb-4 dark:border-gray-800 sm:flex-row sm:items-center sm:justify-between">
+            <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white">&larr; Back</a>
+
+            <div class="flex flex-wrap gap-3">
+                <button id="saveBtn" type="button" class="rounded bg-black px-4 py-2 text-white transition hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200">Save</button>
+                <form action="/notes/<%= note.id %>/delete" method="POST">
+                    <button type="submit" class="rounded bg-red-500 px-4 py-2 text-white transition hover:bg-red-600">Delete</button>
+                </form>
+            </div>
+        </div>
+
+        <form id="noteForm" class="space-y-4" action="/notes/<%= note.id %>/update" method="POST">
+            <div>
+                <label for="note-title" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
+                <input
+                    id="note-title"
+                    name="title"
+                    type="text"
+                    value="<%= note.title %>"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-200 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:focus:border-gray-100 dark:focus:ring-gray-800"
+                />
+            </div>
+
+            <div>
+                <label for="note-content" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Content</label>
+                <textarea
+                    id="note-content"
+                    name="content"
+                    class="h-96 w-full rounded border border-gray-300 p-3 text-sm outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-200 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:focus:border-gray-100 dark:focus:ring-gray-800"
+                >
+<%= note.content %></textarea
+                >
+            </div>
+        </form>
+    </section>
+</main>
+
+<script>
+    const saveBtn = document.getElementById("saveBtn");
+    const noteForm = document.getElementById("noteForm");
+
+    saveBtn.addEventListener("click", () => {
+        noteForm.submit();
+    });
+</script>
