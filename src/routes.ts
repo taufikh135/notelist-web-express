@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import * as authController from "./controllers/auth.controller";
 import * as homeController from "./controllers/home.controller";
 import * as noteController from "./controllers/note.controller";
@@ -6,7 +6,7 @@ import * as profileController from "./controllers/profile.controller";
 import { notLoginMiddleware } from "./middlewares/not-login.middleware";
 import { isLoginMiddleware } from "./middlewares/is-login.middleware";
 
-const router = express.Router();
+const router: Router = express.Router();
 
 // Login
 router.get("/auth/login", notLoginMiddleware, authController.showLoginPage);

@@ -4,7 +4,7 @@
     "description": "",
     "main": "server.ts",
     "scripts": {
-        "start": "node src/server.ts",
+        "start": "node dist/server.js",
         "dev": "tsx watch src/server.ts",
         "build": "tsc",
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,6 @@
     "license": "ISC",
     "type": "commonjs",
     "dependencies": {
-        "@prisma/adapter-better-sqlite3": "^7.4.2",
         "@prisma/adapter-mariadb": "^7.4.2",
         "@prisma/client": "^7.4.2",
         "bcrypt": "^6.0.0",
@@ -29,7 +28,6 @@
     },
     "devDependencies": {
         "@types/bcrypt": "^6.0.0",
-        "@types/better-sqlite3": "^7.6.13",
         "@types/cookie-parser": "^1.4.10",
         "@types/express": "^5.0.6",
         "@types/express-ejs-layouts": "^2.5.4",

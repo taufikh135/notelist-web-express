@@ -5,3 +5,5 @@ node_modules
 /src/prisma
 /prisma/seeds
 /dev.db
+
+/dist

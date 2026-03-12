@@ -1,15 +1,15 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import path from "path";
 import expressEjsLayouts from "express-ejs-layouts";
 import session from "express-session";
 import routes from "./routes";
 import flash from "express-flash";
+import path from "path";
 
 const app = express();
 
 // View Engine Setup
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(process.cwd(), "src/views"));
 app.set("view engine", "ejs");
 
 app.use(
